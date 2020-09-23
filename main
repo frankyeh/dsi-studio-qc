@@ -29,6 +29,6 @@ if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=qc --source=${source} ${bval} ${bvec} 
 
-# move file to src folder
-# mkdir -p stat
-# mv 
+# move file to stat folder
+mkdir -p stat
+mv *.qc.txt stat/tractmeasures
