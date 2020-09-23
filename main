@@ -6,13 +6,28 @@
 
 set -e  
 
-src=$(jq -r .src config.json)
-
+dwi=$(jq -r .dwi config.json)
+bval=$(jq -r .bvals config.json)
+bvec=$(jq -r .bvecs config.json)
 # create symbolic link here
-#dwi_base_name=${dwi##*/}
-#rm -f ${dwi_base_name}
-#ln -s ${dwi} ${dwi_base_name}
-#time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=qc --source=${dwi_base_name}
+source=${dwi##*/}
+ln -sf ${dwi} ${source}
+
+# if SRC file is assigned use it instead
+src=$(jq -r .src config.json)
+if [ -f "$src" ]
+then 
+  source=${src##*/}
+  ln -sf ${src} ${source}
+  bval="";
+  bvec="";
+fi
+
+# setup bval bvec parameters
+if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
+if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
+
+time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=qc --source=${source} ${bval} ${bvec} 
 
 # move file to src folder
 # mkdir -p stat
