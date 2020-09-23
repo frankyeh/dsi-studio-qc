@@ -1,0 +1,19 @@
+#!/bin/bash
+#PBS -l nodes=1:ppn=1
+#PBS -l vmem=8gb
+#PBS -l walltime=1:00:00
+#PBS -N dsi-studio-dwi2src
+
+set -e  
+
+src=$(jq -r .src config.json)
+
+# create symbolic link here
+#dwi_base_name=${dwi##*/}
+#rm -f ${dwi_base_name}
+#ln -s ${dwi} ${dwi_base_name}
+#time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=src --source=${dwi_base_name} --bval=${bval} --bvec=${bvec} --output=${dwi_base_name}.src.gz
+
+# move file to src folder
+# mkdir -p stat
+# mv 
