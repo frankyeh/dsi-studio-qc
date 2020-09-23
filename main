@@ -28,7 +28,8 @@ if [ ! -z "$bval" ]; then bval="--bval=${bval}"; fi
 if [ ! -z "$bvec" ]; then bvec="--bvec=${bvec}"; fi
 
 time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=qc --source=${source} ${bval} ${bvec} 
+echo "{\"datatype_tags\": [\"qc\"]}" > product.json
 
 # move file to stat folder
 mkdir -p stat
-mv *.qc.txt stat/tractmeasures
+mv *.qc.txt stat/tractmeasures.txt
