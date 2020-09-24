@@ -31,5 +31,5 @@ time singularity exec -e docker://dsistudio/dsistudio dsi_studio --action=qc --s
 echo "{\"datatype_tags\": [\"qc\"]}" > product.json
 
 # move file to stat folder
-mkdir -p report
-mv *.qc.txt report/html.txt
+mkdir -p stat
+mv *.txt stat/tractmeasures.txt
