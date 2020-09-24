@@ -32,4 +32,4 @@ echo "{\"datatype_tags\": [\"qc\"]}" > product.json
 
 # move file to stat folder
 mkdir -p stat
-mv *.txt stat/tractmeasures.txt
+mv *.txt stat/tractmeasures
